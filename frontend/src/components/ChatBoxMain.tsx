@@ -37,7 +37,7 @@ export const ChatBoxMain = ({
     try {
       const response = await axiosInstance.post("/chat", data);
       if (response.status === 200) {
-        setResponse(response.data);
+        setResponse(response.data.text);
         toast.success("Successfully created message");
         reset();
       } else {

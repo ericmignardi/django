@@ -22,7 +22,7 @@ RUN python manage.py collectstatic --noinput || true
 # Expose port
 EXPOSE 8000
 
-# Run migrations and start server
+# Run migrations and start Gunicorn server
 CMD python manage.py migrate && \
     python manage.py seed_prices && \
-    python manage.py runserver 0.0.0.0:8000
+    gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 2
