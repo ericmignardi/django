@@ -1,23 +1,15 @@
-"""
-LangChain integration for grain marketing AI assistant.
-
-This module provides a conversational AI chain using LangChain with Google Gemini.
-It includes a system prompt tailored for grain marketing advice.
-"""
 import os
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.output_parsers import StrOutputParser
 
-# Initialize the Gemini model via LangChain
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
     temperature=0.7,
     google_api_key=os.getenv("GEMINI_API_KEY"),
 )
 
-# System prompt tailored for grain marketing (aligns with GrainFox's domain)
 SYSTEM_PROMPT = """You are a knowledgeable grain marketing advisor. Your role is to help farmers and grain producers make informed decisions about:
 
 - Current grain market conditions and price trends
@@ -38,7 +30,6 @@ prompt = ChatPromptTemplate.from_messages([
 
 # Create the chain: prompt -> LLM -> string output
 chain = prompt | llm | StrOutputParser()
-
 
 def get_response(message: str, chat_history: list = None) -> str:
     """
