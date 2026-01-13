@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend
+    container_name: grain-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - CORS_ALLOWED_ORIGINS=http://localhost:5173,http://localhost,http://127.0.0.1
+      - ALLOWED_HOSTS=localhost,127.0.0.1,backend
+    volumes:
+      - ./backend:/app
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py seed_prices &&
+             python manage.py runserver 0.0.0.0:8000"
+
+  frontend:
+    build: ./frontend
+    container_name: grain-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
