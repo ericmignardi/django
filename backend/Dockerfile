@@ -22,7 +22,7 @@ RUN python manage.py collectstatic --noinput || true
 # Expose port
 EXPOSE 8000
 
-# Run migrations and start Gunicorn server
+# Run migrations and start Daphne ASGI server
 CMD python manage.py migrate && \
     python manage.py seed_prices && \
-    gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 2
+    daphne -b 0.0.0.0 -p 8000 config.asgi:application

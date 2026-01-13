@@ -3,10 +3,10 @@ export const ChatBoxHeader = () => {
     <header className="flex flex-col gap-2">
       <h1 className="text-5xl font-bold">
         <span className="bg-linear-to-r from-stone-950 via-indigo-800 to-blue-800 bg-clip-text text-transparent">
-          Hi there, John
-        </span>
-        <br />
-        <span className="bg-linear-to-r from-stone-950 via-indigo-800 to-blue-800 bg-clip-text text-transparent">
+          Hi there!
+
+          <br />
+
           What would you like to know?
         </span>
       </h1>

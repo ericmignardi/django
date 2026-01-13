@@ -1,5 +1,5 @@
-import { Loader2 } from "lucide-react";
-import type { Price } from "./PriceCard";
+import { Loader2 } from 'lucide-react';
+import type { Price } from './PriceCard';
 
 type PriceCardMainPropsType = {
   loading: boolean;
@@ -36,12 +36,8 @@ export const PriceCardMain = ({ loading, prices }: PriceCardMainPropsType) => {
               key={price.grain_type}
               className="hover:bg-stone-200 transition-colors cursor-pointer"
             >
-              <td className="text-left p-4 text-sm font-medium">
-                {price.grain_type}
-              </td>
-              <td className="text-right p-4 text-sm font-medium">
-                ${price.price}
-              </td>
+              <td className="text-left p-4 text-sm font-medium">{price.grain_type}</td>
+              <td className="text-right p-4 text-sm font-medium">${price.price}</td>
             </tr>
           ))}
         </tbody>

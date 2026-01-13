@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import { axiosInstance } from "../api/axios";
-import { PriceCardHeader } from "./PriceCardHeader";
-import { PriceCardMain } from "./PriceCardMain";
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { axiosInstance } from '../../api/axios';
+import { PriceCardHeader } from './PriceCardHeader';
+import { PriceCardMain } from './PriceCardMain';
 
 export interface Price {
   grain_type: string;
@@ -17,17 +17,17 @@ export const PriceCard = () => {
     const fetchPrices = async () => {
       setLoading(true);
       try {
-        const response = await axiosInstance.get("/prices");
+        const response = await axiosInstance.get('/prices');
         if (response.status === 200) {
           setPrices(response.data);
-          toast.success("Successfully read prices");
+          toast.success('Successfully read prices');
         } else {
           setPrices([]);
-          toast.error("Unable to read prices");
+          toast.error('Unable to read prices');
         }
       } catch (error) {
-        if (error instanceof Error ? error.message : "Error reading prices")
-          toast.error("Error reading prices");
+        if (error instanceof Error ? error.message : 'Error reading prices')
+          toast.error('Error reading prices');
       } finally {
         setLoading(false);
       }
